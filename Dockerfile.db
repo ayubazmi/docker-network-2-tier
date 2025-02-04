@@ -1,0 +1,14 @@
+# Use official MySQL 8.4 image
+FROM mysql:8.4
+
+# Set working directory
+WORKDIR /app
+
+# Copy the .env file into the container (optional, for debugging)
+COPY .env /app/.env
+
+# Copy the SQL script to initialize the database
+COPY message.sql /docker-entrypoint-initdb.d/
+
+# Expose MySQL port
+EXPOSE 3306
