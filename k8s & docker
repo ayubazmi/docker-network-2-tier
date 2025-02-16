@@ -1,0 +1,8 @@
+kubectl cp message.sql mysql-abc123:/tmp/message.sql
+kubectl exec -it mysql-abc123 -- sh
+ls -l /tmp/message.sql
+kubectl exec -it mysql-db-6d84dbc4f6-4bm9l -- mysql -u root -p
+SHOW DATABASES;
+SOURCE /tmp/message.sql;
+docker run --env-file .env -d --name mysql-db-cnn --network my-network -p 3306:3306 mysql-dbimg
+docker run -d --name flask-cnn --network my-network -p 5000:5000 flaskapp-img
